@@ -73,6 +73,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CastleBootstrapper.cs" />
+    <Compile Include="UI\Calendar\ViewModels\CalendarWeekViewModel.cs" />
+    <Compile Include="UI\Calendar\ViewModels\DayViewModel.cs" />
+    <Compile Include="UI\Calendar\ViewModels\WeekViewModel.cs" />
     <Compile Include="UI\Shell\ViewModels\ShellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +105,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="UI\Calendar\Views\CalendarWeekView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Shell\Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
