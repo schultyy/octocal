@@ -59,6 +59,7 @@ namespace octocal.UI.Calendar.ViewModels
 
         private void BuildUp()
         {
+            Days.Clear();
             DateTime startOfWeek = DateTime.Today;
             int delta = DayOfWeek.Monday - startOfWeek.DayOfWeek;
             startOfWeek = startOfWeek.AddDays(delta);
@@ -79,6 +80,7 @@ namespace octocal.UI.Calendar.ViewModels
         public void AddEvent()
         {
             IoC.Get<IWindowManager>().ShowModal<EventEditorViewModel>();
+            BuildUp();
         }
     }
 }
