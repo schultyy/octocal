@@ -130,6 +130,7 @@ namespace octocal.UI.Calendar.ViewModels
             var eventEditor = container.Resolve<EventEditorViewModel>();
             eventEditor.Edit(currentAppointment);
             container.Resolve<IWindowManager>().ShowModal(eventEditor);
+            BuildUp();
         }
     }
 }
