@@ -11,7 +11,14 @@
         <ItemsControl ItemsSource="{Binding Appointments}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="Title" />
+                    <Border CornerRadius="3" BorderBrush="LightGray" BorderThickness="0.5" Margin="5">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" Margin="2" />
+                            <TextBlock Text="{Binding Description}" Margin="2" FontFamily="Arial" FontStyle="Italic"
+                                       Foreground="LightGray"
+                                       FontSize="8" />
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>

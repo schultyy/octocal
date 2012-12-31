@@ -81,6 +81,14 @@ namespace octocal.UI.Calendar.ViewModels
             this.EndTime = DateTime.Now.AddDays(1);
         }
 
+        public void Edit(Appointment appointment)
+        {
+            this.Description = appointment.Description;
+            this.EndTime = appointment.EndDate;
+            this.StartTime = appointment.StartDate;
+            this.Title = appointment.Title;
+        }
+
         public void Dismiss()
         {
             if (messageBox.ShowYesNo("Do you really want to close?") == MessageBoxResult.Yes)
