@@ -87,6 +87,7 @@
     <Compile Include="UI\Calendar\ViewModels\EventEditorViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToVisibiltyConverter.cs" />
     <Compile Include="UI\Converters\NullConverter.cs" />
+    <Compile Include="UI\Services\MessageBoxService.cs" />
     <Compile Include="UI\Shell\ViewModels\ShellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

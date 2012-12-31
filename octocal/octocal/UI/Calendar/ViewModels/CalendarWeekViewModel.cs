@@ -50,8 +50,11 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
-        public CalendarWeekViewModel()
+        private IWindsorContainer container;
+
+        public CalendarWeekViewModel(IWindsorContainer container)
         {
+            this.container = container;
             Days = new BindableCollection<DayViewModel>();
             BuildUp();
         }
@@ -74,7 +77,7 @@ namespace octocal.UI.Calendar.ViewModels
 
         public void AddEvent()
         {
-            DetailsViewModel = new EventEditorViewModel();
+            DetailsViewModel = container.Resolve<EventEditorViewModel>();
         }
     }
 }

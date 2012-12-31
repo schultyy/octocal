@@ -2,12 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Caliburn.Micro;
 using Castle.Core;
 using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using octocal.Domain;
+using octocal.UI.Services;
+using octocal.UI.Shell.ViewModels;
 
 namespace octocal
 {
@@ -23,6 +27,21 @@ namespace octocal
         {
             _container = new ApplicationContainer();
             _container.AddFacility<TypedFactoryFacility>();
+            _container.Register(AllTypes.FromAssembly(typeof(ShellViewModel).Assembly)
+                .Where(x => x.Name.EndsWith("ViewModel") || x.Name.EndsWith("View"))
+                .Configure(x => x.LifeStyle.Is(LifestyleType.Transient)));
+            _container.Register(Component.For<IWindsorContainer>().Instance(_container));
+
+            base.Configure();
+        }
+
+        protected override IEnumerable<Assembly> SelectAssemblies()
+        {
+            return new[]
+                {
+                Assembly.GetExecutingAssembly(),
+                typeof(ShellViewModel).Assembly
+                };
         }
 
         protected override object GetInstance(Type service, string key)
@@ -53,10 +72,11 @@ namespace octocal
             Register(
                 Component.For<IWindowManager>().ImplementedBy<WindowManager>().LifeStyle.Is(LifestyleType.Singleton),
                 Component.For<IEventAggregator>().ImplementedBy<EventAggregator>().LifeStyle.Is(LifestyleType.Singleton),
-                Component.For<IWindsorContainer>().ImplementedBy<WindsorContainer>().LifeStyle.Is(LifestyleType.Singleton)
+                Component.For<IMessageBoxService>().ImplementedBy<MessageBoxService>().LifeStyle.Is(LifestyleType.Singleton),
+                Component.For<IAppointmentService>().ImplementedBy<AppointmentService>().LifeStyle.Is(LifestyleType.Singleton)
                 );
 
-            RegisterViewModels();
+            //RegisterViewModels();
         }
 
         private void RegisterViewModels()
