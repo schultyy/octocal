@@ -12,10 +12,13 @@
             <Setter Property="Width" Value="200" />
             <Setter Property="Height" Value="25" />
         </Style>
-        <Style TargetType="{x:Type DatePicker}">
+        <Style TargetType="{x:Type xctk:DateTimePicker}">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Width" Value="200" />
+            <Setter Property="Width" Value="250" />
             <Setter Property="Height" Value="25" />
+        </Style>
+        <Style TargetType="{x:Type HeaderedContentControl}">
+            <Setter Property="IsTabStop" Value="False" />
         </Style>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
@@ -28,14 +31,14 @@
             <HeaderedContentControl Header="Title" Margin="5">
                 <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
             </HeaderedContentControl>
+            <HeaderedContentControl Header="Description" Margin="5">
+                <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+            </HeaderedContentControl>
             <HeaderedContentControl Header="Start date" Margin="5">
                 <xctk:DateTimePicker Value="{Binding StartTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             </HeaderedContentControl>
             <HeaderedContentControl Header="End date" Margin="5">
                 <xctk:DateTimePicker Value="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            </HeaderedContentControl>
-            <HeaderedContentControl Header="Description" Margin="5">
-                <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
             </HeaderedContentControl>
         </UniformGrid>
     </DockPanel>

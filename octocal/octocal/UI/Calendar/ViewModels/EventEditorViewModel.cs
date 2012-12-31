@@ -77,8 +77,8 @@ namespace octocal.UI.Calendar.ViewModels
         {
             messageBox = service;
             this.appointmentService = appointmentService;
-            this.StartTime = DateTime.Now;
-            this.EndTime = DateTime.Now.AddDays(1);
+            this.StartTime = DateTime.Today.AddHours(DateTime.Now.Hour);
+            this.EndTime = StartTime.AddHours(1);
         }
 
         public void Edit(Appointment appointment)

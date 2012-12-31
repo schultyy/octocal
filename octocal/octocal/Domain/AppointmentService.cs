@@ -69,7 +69,10 @@ namespace octocal.Domain
 
         public Appointment[] GetRange(DateTime start, DateTime end)
         {
-            return allTimeList.Where(c => c.StartDate >= start && c.StartDate <= end).ToArray();
+            return allTimeList.Where(c => c.StartDate >= start && c.StartDate <= end)
+                .OrderBy(c => c.StartDate)
+                .ThenBy(c => c.EndDate)
+                .ToArray();
         }
 
         public Appointment GetByStartDate(DateTime date)
@@ -79,7 +82,10 @@ namespace octocal.Domain
 
         public Appointment[] GetAllByStartDate(DateTime date)
         {
-            return allTimeList.Where(c => c.StartDate.Date == date.Date).ToArray();
+            return allTimeList.Where(c => c.StartDate.Date == date.Date)
+                .OrderBy(c => c.StartDate)
+                .ThenBy(c => c.EndDate)
+                .ToArray();
         }
 
         public void DeleteAppointment(Appointment appointment)

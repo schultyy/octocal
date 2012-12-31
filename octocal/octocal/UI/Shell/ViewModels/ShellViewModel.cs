@@ -24,6 +24,12 @@ namespace octocal.UI.Shell.ViewModels
 
             item.Shell = this;
         }
+
+        public override void TryClose(bool? dialogResult)
+        {
+            base.TryClose(dialogResult);
+            this.CloseStrategy = new DefaultCloseStrategy<ShellContentBase>(true);
+        }
     }
 
     public class ShellContentBase : Screen
