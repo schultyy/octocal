@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <TextBlock Text="{Binding Date,StringFormat=dd-MM-yyyy}" Margin="5"
+        <TextBlock Text="{Binding Date,StringFormat=dd.MM.yyyy}" Margin="5"
                    FontSize="14" FontFamily="Arial" />
         <ItemsControl ItemsSource="{Binding Appointments}">
             <ItemsControl.ItemTemplate>
