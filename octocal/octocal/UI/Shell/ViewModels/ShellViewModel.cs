@@ -26,6 +26,7 @@ namespace octocal.UI.Shell.ViewModels
         public ShellViewModel(CalendarWeekViewModel child)
         {
             this.Child = child;
+            DisplayName = "octocal - strange name, great software";
         }
     }
 }
