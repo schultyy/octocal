@@ -6,16 +6,22 @@
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <ItemsControl ItemsSource="{Binding Days,Mode=TwoWay}">
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <ContentControl cal:View.Model="{Binding}" Margin="5" />
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <UniformGrid Rows="1"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-    </ItemsControl>
+    <DockPanel LastChildFill="True">
+        <ToolBar DockPanel.Dock="Top" Background="Transparent">
+            <Button Content="Add event" />
+        </ToolBar>
+        <ItemsControl ItemsSource="{Binding Days,Mode=TwoWay}"
+                      DockPanel.Dock="Bottom">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding}" Margin="5" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DockPanel>
 </UserControl>

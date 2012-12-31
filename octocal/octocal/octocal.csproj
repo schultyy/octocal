@@ -75,6 +75,7 @@
     <Compile Include="CastleBootstrapper.cs" />
     <Compile Include="UI\Calendar\ViewModels\CalendarWeekViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\DayViewModel.cs" />
+    <Compile Include="UI\Calendar\ViewModels\EventEditorViewModel.cs" />
     <Compile Include="UI\Shell\ViewModels\ShellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Calendar\Views\DayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Calendar\Views\EventEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
