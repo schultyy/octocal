@@ -62,6 +62,12 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.8.0\lib\net40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.8.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -79,6 +85,8 @@
     <Compile Include="UI\Calendar\ViewModels\CalendarWeekViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\DayViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\EventEditorViewModel.cs" />
+    <Compile Include="UI\Converters\BooleanToVisibiltyConverter.cs" />
+    <Compile Include="UI\Converters\NullConverter.cs" />
     <Compile Include="UI\Shell\ViewModels\ShellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

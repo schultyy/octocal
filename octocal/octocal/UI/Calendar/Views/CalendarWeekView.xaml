@@ -8,8 +8,12 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel LastChildFill="True">
         <ToolBar DockPanel.Dock="Top" Background="Transparent">
-            <Button Content="Add event" />
+            <Button Content="Add event" cal:Message.Attach="AddEvent" />
         </ToolBar>
+        <ContentControl DockPanel.Dock="Top">
+            <ContentControl cal:View.Model="{Binding DetailsViewModel}"
+                            Margin="10" />
+        </ContentControl>
         <ItemsControl ItemsSource="{Binding Days,Mode=TwoWay}"
                       DockPanel.Dock="Bottom">
             <ItemsControl.ItemTemplate>

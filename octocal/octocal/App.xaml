@@ -1,7 +1,17 @@
 ﻿<Application x:Class="octocal.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:octocal.UI.Converters">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <converters:BooleanToVisibiltyConverter x:Key="CollapsedIfTrue" Invert="True"/>
+                    <converters:BooleanToVisibiltyConverter x:Key="CollapsedIfFalse" />
+                    <converters:NullConverter x:Key="CollapsedIfNull" Invert="True" />
+                    <converters:NullConverter x:Key="CollapsedIfNotNull" />
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

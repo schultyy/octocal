@@ -17,22 +17,25 @@
             <Setter Property="Height" Value="25" />
         </Style>
     </UserControl.Resources>
-    <StackPanel>
-        <HeaderedContentControl Header="Title">
-            <TextBox Text="" />
-        </HeaderedContentControl>
-        <HeaderedContentControl Header="Start date">
-            <DatePicker />
-        </HeaderedContentControl>
-        <HeaderedContentControl Header="End date">
-            <DatePicker />
-        </HeaderedContentControl>
-        <HeaderedContentControl Header="Description">
-            <TextBox />
-        </HeaderedContentControl>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+    <DockPanel LastChildFill="True">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    DockPanel.Dock="Bottom">
             <Button Content="Dismiss" Margin="5" Width="100" />
             <Button Content="Save and close" Margin="5" Width="100" />
         </StackPanel>
-    </StackPanel>
+        <UniformGrid DockPanel.Dock="Top">
+            <HeaderedContentControl Header="Title">
+                <TextBox Text="" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="Start date">
+                <DatePicker />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="End date">
+                <DatePicker />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="Description">
+                <TextBox />
+            </HeaderedContentControl>
+        </UniformGrid>
+    </DockPanel>
 </UserControl>

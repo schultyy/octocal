@@ -7,26 +7,31 @@ using octocal.UI.Calendar.ViewModels;
 
 namespace octocal.UI.Shell.ViewModels
 {
-    public class ShellViewModel : Screen
+    public class ShellViewModel : Conductor<ShellContentBase>.Collection.OneActive, IShell
     {
-        private object child;
-
-        public object Child
-        {
-            get { return child; }
-            set
-            {
-                if (child == value)
-                    return;
-                child = value;
-                NotifyOfPropertyChange(() => Child);
-            }
-        }
-
         public ShellViewModel(CalendarWeekViewModel child)
         {
-            this.Child = child;
+            this.ActivateItem(child);
             DisplayName = "octocal - strange name, great software";
         }
+
+        public override void ActivateItem(ShellContentBase item)
+        {
+            base.ActivateItem(item);
+
+            if (item == null)
+                return;
+
+            item.Shell = this;
+        }
+    }
+
+    public class ShellContentBase : Screen
+    {
+        public IShell Shell { get; set; }
+    }
+
+    public interface IShell
+    {
     }
 }

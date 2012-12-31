@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using Caliburn.Micro;
 using Castle.Windsor;
+using octocal.UI.Shell.ViewModels;
 
 namespace octocal.UI.Calendar.ViewModels
 {
-    public class CalendarWeekViewModel : Screen
+    public class CalendarWeekViewModel : ShellContentBase
     {
         public override string DisplayName
         {
@@ -35,6 +36,20 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
+        private ShellContentBase detailsViewModel;
+
+        public ShellContentBase DetailsViewModel
+        {
+            get { return detailsViewModel; }
+            set
+            {
+                if (detailsViewModel == value)
+                    return;
+                detailsViewModel = value;
+                NotifyOfPropertyChange(() => DetailsViewModel);
+            }
+        }
+
         public CalendarWeekViewModel()
         {
             Days = new BindableCollection<DayViewModel>();
@@ -55,6 +70,11 @@ namespace octocal.UI.Calendar.ViewModels
                 Days.Add(new DayViewModel { Date = currentDay });
                 currentDay = currentDay.AddDays(1);
             }
+        }
+
+        public void AddEvent()
+        {
+            DetailsViewModel = new EventEditorViewModel();
         }
     }
 }
