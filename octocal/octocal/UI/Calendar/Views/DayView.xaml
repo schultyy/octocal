@@ -13,9 +13,14 @@
                 <DataTemplate>
                     <Border CornerRadius="3" BorderBrush="LightGray" BorderThickness="0.5" Margin="5">
                         <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding StartDate,StringFormat=t,ConverterCulture=de-DE}" />
+                                <TextBlock Text="-" Margin="2 0 0 0" />
+                                <TextBlock Text="{Binding EndDate,StringFormat=t,ConverterCulture=de-DE}" />
+                            </StackPanel>
                             <TextBlock Text="{Binding Title}" Margin="2" />
                             <TextBlock Text="{Binding Description}" Margin="2" FontFamily="Arial" FontStyle="Italic"
-                                       Foreground="LightGray"
+                                       Foreground="#C6C6C6"
                                        FontSize="8" />
                             <Button Content="Delete" cal:Message.Attach="Delete($datacontext)" BorderBrush="{x:Null}" BorderThickness="0"
                                     FontSize="8"  />
