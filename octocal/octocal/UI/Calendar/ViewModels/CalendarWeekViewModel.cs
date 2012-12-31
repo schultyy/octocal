@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Windows;
 using Caliburn.Micro;
 using Castle.Windsor;
 using octocal.Domain;
+using octocal.UI.Services;
 using octocal.UI.Shell.ViewModels;
 
 namespace octocal.UI.Calendar.ViewModels
@@ -48,17 +50,35 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
+        private bool isBusy;
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                if (isBusy == value)
+                    return;
+                isBusy = value;
+                NotifyOfPropertyChange(() => IsBusy);
+            }
+        }
+
         private IWindsorContainer container;
 
-        public CalendarWeekViewModel(IWindsorContainer container)
+        private IAppointmentService appointmentService;
+
+        public CalendarWeekViewModel(IWindsorContainer container, IAppointmentService service)
         {
             this.container = container;
+            this.appointmentService = service;
             Days = new BindableCollection<DayViewModel>();
             BuildUp();
         }
 
         private void BuildUp()
         {
+            IsBusy = true;
             Days.Clear();
             DateTime startOfWeek = DateTime.Today;
             int delta = DayOfWeek.Monday - startOfWeek.DayOfWeek;
@@ -67,18 +87,31 @@ namespace octocal.UI.Calendar.ViewModels
             DateTime endOfWeek = startOfWeek.AddDays(7);
 
             DateTime currentDay = startOfWeek;
-            var appointmentService = container.Resolve<IAppointmentService>();
+
             while (currentDay < endOfWeek)
             {
                 Days.Add(new DayViewModel { Date = currentDay, Appointments = new BindableCollection<Appointment>(appointmentService.GetAllByStartDate(currentDay)) });
                 currentDay = currentDay.AddDays(1);
             }
+            IsBusy = false;
         }
 
         public void AddEvent()
         {
-            IoC.Get<IWindowManager>().ShowModal<EventEditorViewModel>();
+            container.Resolve<IWindowManager>().ShowModal<EventEditorViewModel>();
             BuildUp();
+        }
+
+        public void Delete(Appointment appointment)
+        {
+            if (appointment == null)
+                return;
+            if (container.Resolve<IMessageBoxService>().ShowYesNo(string.Format("Do you really want to delete {0}?",
+                                                                            appointment.Title)) == MessageBoxResult.Yes)
+            {
+                appointmentService.DeleteAppointment(appointment);
+                BuildUp();
+            }
         }
     }
 }

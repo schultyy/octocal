@@ -81,5 +81,14 @@ namespace octocal.Domain
         {
             return allTimeList.Where(c => c.StartDate.Date == date.Date).ToArray();
         }
+
+        public void DeleteAppointment(Appointment appointment)
+        {
+            if (appointment == null)
+                throw new ArgumentNullException("appointment");
+
+            allTimeList.Remove(appointment);
+            Task.Factory.StartNew(Serialize);
+        }
     }
 }
