@@ -89,6 +89,7 @@
     <Compile Include="UI\Converters\NullConverter.cs" />
     <Compile Include="UI\Services\MessageBoxService.cs" />
     <Compile Include="UI\Shell\ViewModels\ShellViewModel.cs" />
+    <Compile Include="UI\WindowManagerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

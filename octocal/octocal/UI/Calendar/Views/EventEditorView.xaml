@@ -25,16 +25,16 @@
             <Button Content="Save and close" Margin="5" Width="100" cal:Message.Attach="Save" />
         </StackPanel>
         <UniformGrid DockPanel.Dock="Top">
-            <HeaderedContentControl Header="Title">
+            <HeaderedContentControl Header="Title" Margin="5">
                 <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
             </HeaderedContentControl>
-            <HeaderedContentControl Header="Start date">
+            <HeaderedContentControl Header="Start date" Margin="5">
                 <DatePicker SelectedDate="{Binding StartTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             </HeaderedContentControl>
-            <HeaderedContentControl Header="End date">
+            <HeaderedContentControl Header="End date" Margin="5">
                 <DatePicker SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </HeaderedContentControl>
-            <HeaderedContentControl Header="Description">
+            <HeaderedContentControl Header="Description" Margin="5">
                 <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
             </HeaderedContentControl>
         </UniformGrid>
