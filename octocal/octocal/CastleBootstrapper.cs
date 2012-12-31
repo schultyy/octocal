@@ -52,7 +52,8 @@ namespace octocal
         {
             Register(
                 Component.For<IWindowManager>().ImplementedBy<WindowManager>().LifeStyle.Is(LifestyleType.Singleton),
-                Component.For<IEventAggregator>().ImplementedBy<EventAggregator>().LifeStyle.Is(LifestyleType.Singleton)
+                Component.For<IEventAggregator>().ImplementedBy<EventAggregator>().LifeStyle.Is(LifestyleType.Singleton),
+                Component.For<IWindsorContainer>().ImplementedBy<WindsorContainer>().LifeStyle.Is(LifestyleType.Singleton)
                 );
 
             RegisterViewModels();

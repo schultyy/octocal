@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Caliburn.Micro;
+using Castle.Windsor;
 
 namespace octocal.UI.Calendar.ViewModels
 {
@@ -20,23 +21,23 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
-        private WeekViewModel week;
+        private BindableCollection<DayViewModel> days;
 
-        public WeekViewModel Week
+        public BindableCollection<DayViewModel> Days
         {
-            get { return week; }
+            get { return days; }
             set
             {
-                if (week == value)
+                if (days == value)
                     return;
-                week = value;
-                NotifyOfPropertyChange(() => Week);
+                days = value;
+                NotifyOfPropertyChange(() => Days);
             }
         }
 
         public CalendarWeekViewModel()
         {
-            
+            Days = new BindableCollection<DayViewModel>();
             BuildUp();
         }
 
@@ -48,9 +49,11 @@ namespace octocal.UI.Calendar.ViewModels
 
             DateTime endOfWeek = startOfWeek.AddDays(7);
 
-            for (int i = 0; i < 7; i++)
+            DateTime currentDay = startOfWeek;
+            while (currentDay < endOfWeek)
             {
-
+                Days.Add(new DayViewModel { Date = currentDay });
+                currentDay = currentDay.AddDays(1);
             }
         }
     }
