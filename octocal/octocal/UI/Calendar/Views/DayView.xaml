@@ -26,7 +26,7 @@
                                 </Button>
                             </ContextMenu>
                         </Border.ContextMenu>
-                        <StackPanel>
+                        <StackPanel cal:Message.Attach="[Event MouseLeftButtonDown]=[Action Edit($datacontext)]">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding StartDate,StringFormat=t,ConverterCulture=de-DE}" />
                                 <TextBlock Text="-" Margin="2 0 0 0" />
@@ -36,11 +36,6 @@
                             <TextBlock Text="{Binding Description}" Margin="2" FontFamily="Arial" FontStyle="Italic"
                                        Foreground="#C6C6C6"
                                        FontSize="8" />
-                            <!--<Button Content="Delete" Visibility="{Binding DataContext.IsDeleteButtonVisible, 
-                                                                    RelativeSource={RelativeSource AncestorType={x:Type UserControl},Mode=FindAncestor}, 
-                                                                    Converter={StaticResource CollapsedIfFalse}, Mode=TwoWay}" 
-                                    cal:Message.Attach="Delete($datacontext)" BorderBrush="{x:Null}" BorderThickness="0"
-                                    FontSize="8"  />-->
                         </StackPanel>
                     </Border>
                 </DataTemplate>

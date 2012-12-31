@@ -69,6 +69,8 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
+        private Guid technicalId;
+
         private IMessageBoxService messageBox;
 
         private IAppointmentService appointmentService;
@@ -79,6 +81,7 @@ namespace octocal.UI.Calendar.ViewModels
             this.appointmentService = appointmentService;
             this.StartTime = DateTime.Today.AddHours(DateTime.Now.Hour);
             this.EndTime = StartTime.AddHours(1);
+            this.technicalId = Guid.Empty;
         }
 
         public void Edit(Appointment appointment)
@@ -87,6 +90,7 @@ namespace octocal.UI.Calendar.ViewModels
             this.EndTime = appointment.EndDate;
             this.StartTime = appointment.StartDate;
             this.Title = appointment.Title;
+            this.technicalId = appointment.TechnicalId;
         }
 
         public void Dismiss()
@@ -102,7 +106,8 @@ namespace octocal.UI.Calendar.ViewModels
                                                        Description = Description,
                                                        EndDate = EndTime,
                                                        StartDate = StartTime,
-                                                       Title = Title
+                                                       Title = Title,
+                                                       TechnicalId = technicalId
                                                    });
             TryClose();
         }

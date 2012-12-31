@@ -10,16 +10,21 @@ namespace octocal.UI
     {
         public static void ShowModal<T>(this IWindowManager windowManager)
         {
-            var window = new Window();
-            
+            var container = IoC.Get<IWindsorContainer>();
+            var viewModel = container.Resolve<T>();
+            windowManager.ShowModal(viewModel);
+        }
+
+        public static void ShowModal<T>(this IWindowManager windowManager, T viewModel)
+        {
             dynamic options = new ExpandoObject();
 
             options.WindowStyle = WindowStyle.None;
             options.ShowInTaskbar = false;
             options.AllowsTransparency = true;
             options.Background = new SolidColorBrush(Colors.Transparent);
-            var container = IoC.Get<IWindsorContainer>();
-            windowManager.ShowDialog(container.Resolve<T>(), settings: options);
+
+            windowManager.ShowDialog(viewModel, settings: options);
         }
     }
 }

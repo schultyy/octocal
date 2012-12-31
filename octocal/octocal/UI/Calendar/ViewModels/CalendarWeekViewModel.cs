@@ -124,5 +124,12 @@ namespace octocal.UI.Calendar.ViewModels
                 BuildUp();
             }
         }
+
+        public void Edit(Appointment currentAppointment)
+        {
+            var eventEditor = container.Resolve<EventEditorViewModel>();
+            eventEditor.Edit(currentAppointment);
+            container.Resolve<IWindowManager>().ShowModal(eventEditor);
+        }
     }
 }
