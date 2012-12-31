@@ -70,10 +70,8 @@ namespace octocal.UI.Calendar.ViewModels
             var appointmentService = container.Resolve<IAppointmentService>();
             while (currentDay < endOfWeek)
             {
-
                 Days.Add(new DayViewModel { Date = currentDay, Appointments = new BindableCollection<Appointment>(appointmentService.GetAllByStartDate(currentDay)) });
                 currentDay = currentDay.AddDays(1);
-
             }
         }
 
