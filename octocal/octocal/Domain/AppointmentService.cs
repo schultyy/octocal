@@ -90,5 +90,10 @@ namespace octocal.Domain
             allTimeList.Remove(appointment);
             Task.Factory.StartNew(Serialize);
         }
+
+        public void Reload()
+        {
+            Deserialize();
+        }
     }
 }

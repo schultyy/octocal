@@ -96,6 +96,17 @@ namespace octocal.UI.Calendar.ViewModels
             IsBusy = false;
         }
 
+        public void Reload()
+        {
+            IsBusy = true;
+
+            appointmentService.Reload();
+
+            BuildUp();
+
+            IsBusy = false;
+        }
+
         public void AddEvent()
         {
             container.Resolve<IWindowManager>().ShowModal<EventEditorViewModel>();

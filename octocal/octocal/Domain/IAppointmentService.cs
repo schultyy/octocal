@@ -12,5 +12,6 @@ namespace octocal.Domain
         Appointment GetByStartDate(DateTime date);
         Appointment[] GetAllByStartDate(DateTime date);
         void DeleteAppointment(Appointment appointment);
+        void Reload();
     }
 }
