@@ -9,5 +9,7 @@ namespace octocal.Domain
     {
         void SaveAppointment(Appointment appointment);
         Appointment[] GetRange(DateTime start, DateTime end);
+        Appointment GetByStartDate(DateTime date);
+        Appointment[] GetAllByStartDate(DateTime date);
     }
 }

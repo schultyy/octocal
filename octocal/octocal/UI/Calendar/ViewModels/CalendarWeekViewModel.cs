@@ -1,6 +1,7 @@
 ﻿using System;
 using Caliburn.Micro;
 using Castle.Windsor;
+using octocal.Domain;
 using octocal.UI.Shell.ViewModels;
 
 namespace octocal.UI.Calendar.ViewModels
@@ -65,10 +66,13 @@ namespace octocal.UI.Calendar.ViewModels
             DateTime endOfWeek = startOfWeek.AddDays(7);
 
             DateTime currentDay = startOfWeek;
+            var appointmentService = container.Resolve<IAppointmentService>();
             while (currentDay < endOfWeek)
             {
-                Days.Add(new DayViewModel { Date = currentDay });
+
+                Days.Add(new DayViewModel { Date = currentDay, Appointments = new BindableCollection<Appointment>(appointmentService.GetAllByStartDate(currentDay)) });
                 currentDay = currentDay.AddDays(1);
+
             }
         }
 

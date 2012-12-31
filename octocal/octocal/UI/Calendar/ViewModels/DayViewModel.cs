@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using Caliburn.Micro;
+using octocal.Domain;
 
 namespace octocal.UI.Calendar.ViewModels
 {
@@ -23,32 +24,23 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
-        private string title;
+        private BindableCollection<Appointment> appointments;
 
-        public string Title
+        public BindableCollection<Appointment> Appointments
         {
-            get { return title; }
+            get { return appointments; }
             set
             {
-                if (title == value)
+                if (appointments == value)
                     return;
-                title = value;
-                NotifyOfPropertyChange(() => Title);
+                appointments = value;
+                NotifyOfPropertyChange(() => Appointments);
             }
         }
 
-        private string description;
-
-        public string Description
+        public DayViewModel()
         {
-            get { return description; }
-            set
-            {
-                if (description == value)
-                    return;
-                description = value;
-                NotifyOfPropertyChange(() => Description);
-            }
+            Appointments = new BindableCollection<Appointment>();
         }
     }
 }

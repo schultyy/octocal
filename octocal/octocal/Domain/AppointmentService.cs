@@ -15,12 +15,9 @@ namespace octocal.Domain
 
         private List<Appointment> allTimeList;
 
-        private Dictionary<Guid, KeyValuePair<DateTime, DateTime>> index;
-
         public AppointmentService()
         {
             allTimeList = new List<Appointment>();
-            index = new Dictionary<Guid, KeyValuePair<DateTime, DateTime>>();
 
             if (!Directory.Exists(storageDirectory))
             {
@@ -40,7 +37,6 @@ namespace octocal.Domain
                 //Insert
                 appointment.TechnicalId = Guid.NewGuid();
                 allTimeList.Add(appointment);
-                index.Add(appointment.TechnicalId, new KeyValuePair<DateTime, DateTime>(appointment.StartDate, appointment.EndDate));
             }
             else
             {
@@ -48,7 +44,6 @@ namespace octocal.Domain
                 var storedAppointment = allTimeList.SingleOrDefault(c => c.TechnicalId == appointment.TechnicalId);
                 var appointmentIndex = allTimeList.IndexOf(storedAppointment);
                 allTimeList[appointmentIndex] = appointment;
-                index[appointment.TechnicalId] = new KeyValuePair<DateTime, DateTime>(appointment.StartDate, appointment.EndDate);
             }
 
             Task.Factory.StartNew(Serialize);
@@ -74,8 +69,17 @@ namespace octocal.Domain
 
         public Appointment[] GetRange(DateTime start, DateTime end)
         {
+            return allTimeList.Where(c => c.StartDate >= start && c.StartDate <= end).ToArray();
+        }
 
-            return null;
+        public Appointment GetByStartDate(DateTime date)
+        {
+            return allTimeList.SingleOrDefault(c => c.StartDate.Date == date.Date);
+        }
+
+        public Appointment[] GetAllByStartDate(DateTime date)
+        {
+            return allTimeList.Where(c => c.StartDate.Date == date.Date).ToArray();
         }
     }
 }

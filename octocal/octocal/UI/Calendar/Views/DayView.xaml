@@ -8,5 +8,17 @@
     <StackPanel>
         <TextBlock Text="{Binding Date,StringFormat=dd-MM-yyyy}" Margin="5"
                    FontSize="14" FontFamily="Arial" />
+        <ItemsControl ItemsSource="{Binding Appointments}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="Title" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </StackPanel>
 </UserControl>
