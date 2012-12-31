@@ -27,12 +27,15 @@
             <Button Content="Dismiss" Margin="5" Width="100" cal:Message.Attach="Dismiss" />
             <Button Content="Save and close" Margin="5" Width="100" cal:Message.Attach="Save" />
         </StackPanel>
-        <UniformGrid DockPanel.Dock="Top">
+        <StackPanel DockPanel.Dock="Top">
             <HeaderedContentControl Header="Title" Margin="5">
                 <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
             </HeaderedContentControl>
             <HeaderedContentControl Header="Description" Margin="5">
                 <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="Location" Margin="5">
+                <TextBox Text="{Binding Location,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
             </HeaderedContentControl>
             <HeaderedContentControl Header="Start date" Margin="5">
                 <xctk:DateTimePicker Value="{Binding StartTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
@@ -40,6 +43,6 @@
             <HeaderedContentControl Header="End date" Margin="5">
                 <xctk:DateTimePicker Value="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </HeaderedContentControl>
-        </UniformGrid>
+        </StackPanel>
     </DockPanel>
 </UserControl>

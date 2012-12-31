@@ -69,6 +69,20 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
+        private string location;
+
+        public string Location
+        {
+            get { return location; }
+            set
+            {
+                if (location == value)
+                    return;
+                location = value;
+                NotifyOfPropertyChange(() => Location);
+            }
+        }
+
         private Guid technicalId;
 
         private IMessageBoxService messageBox;
@@ -91,6 +105,7 @@ namespace octocal.UI.Calendar.ViewModels
             this.StartTime = appointment.StartDate;
             this.Title = appointment.Title;
             this.technicalId = appointment.TechnicalId;
+            this.Location = appointment.Location;
         }
 
         public void Dismiss()
@@ -107,7 +122,8 @@ namespace octocal.UI.Calendar.ViewModels
                                                        EndDate = EndTime,
                                                        StartDate = StartTime,
                                                        Title = Title,
-                                                       TechnicalId = technicalId
+                                                       TechnicalId = technicalId,
+                                                       Location = location
                                                    });
             TryClose();
         }

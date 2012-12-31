@@ -17,5 +17,7 @@ namespace octocal.Domain
         public string Description { get; set; }
 
         public Guid TechnicalId { get; set; }
+
+        public string Location { get; set; }
     }
 }
