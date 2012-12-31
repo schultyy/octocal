@@ -5,6 +5,7 @@ using System.Text;
 
 namespace octocal.Domain
 {
+    [Serializable]
     public class Appointment
     {
         public DateTime StartDate { get; set; }
