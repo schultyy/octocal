@@ -5,7 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="25" />
+        </Style>
+        <Style TargetType="{x:Type DatePicker}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="25" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <HeaderedContentControl Header="Title">
+            <TextBox Text="" />
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="Start date">
+            <DatePicker />
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="End date">
+            <DatePicker />
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="Description">
+            <TextBox />
+        </HeaderedContentControl>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Dismiss" Margin="5" Width="100" />
+            <Button Content="Save and close" Margin="5" Width="100" />
+        </StackPanel>
+    </StackPanel>
 </UserControl>
