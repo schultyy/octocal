@@ -23,7 +23,10 @@ namespace octocal.Domain
             index = new Dictionary<Guid, KeyValuePair<DateTime, DateTime>>();
 
             if (!Directory.Exists(storageDirectory))
+            {
                 Directory.CreateDirectory(storageDirectory);
+                Serialize();
+            }
 
             Deserialize();
         }
