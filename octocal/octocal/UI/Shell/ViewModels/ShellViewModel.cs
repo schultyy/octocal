@@ -27,7 +27,7 @@ namespace octocal.UI.Shell.ViewModels
 
         public override void TryClose(bool? dialogResult)
         {
-            base.TryClose(dialogResult);
+            base.TryClose(dialogResult);  
             this.CloseStrategy = new DefaultCloseStrategy<ShellContentBase>(true);
         }
     }
