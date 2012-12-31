@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:cal="http://www.caliburnproject.org" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -29,10 +29,10 @@
                 <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
             </HeaderedContentControl>
             <HeaderedContentControl Header="Start date" Margin="5">
-                <DatePicker SelectedDate="{Binding StartTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                <xctk:DateTimePicker Value="{Binding StartTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             </HeaderedContentControl>
             <HeaderedContentControl Header="End date" Margin="5">
-                <DatePicker SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <xctk:DateTimePicker Value="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </HeaderedContentControl>
             <HeaderedContentControl Header="Description" Margin="5">
                 <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
