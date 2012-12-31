@@ -22,7 +22,7 @@ namespace octocal.UI
             options.WindowStyle = WindowStyle.None;
             options.ShowInTaskbar = false;
             options.AllowsTransparency = true;
-            options.Background = new SolidColorBrush(Colors.Transparent);
+            options.Background = new SolidColorBrush(Color.FromArgb(255, 242, 242, 242));
 
             windowManager.ShowDialog(viewModel, settings: options);
         }
