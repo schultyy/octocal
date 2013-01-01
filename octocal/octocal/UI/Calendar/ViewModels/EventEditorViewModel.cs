@@ -4,6 +4,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 using Caliburn.Micro;
 using octocal.Domain;
 using octocal.UI.Services;
@@ -110,8 +111,7 @@ namespace octocal.UI.Calendar.ViewModels
 
         public void Dismiss()
         {
-            if (messageBox.ShowYesNo("Do you really want to close?") == MessageBoxResult.Yes)
-                TryClose();
+            TryClose();
         }
 
         public void Save()
@@ -126,6 +126,14 @@ namespace octocal.UI.Calendar.ViewModels
                                                        Location = location
                                                    });
             TryClose();
+        }
+
+        public void OnKeyDown(KeyEventArgs args)
+        {
+            if (args.Key == Key.Escape)
+            {
+                Dismiss();
+            }
         }
     }
 }

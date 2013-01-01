@@ -11,6 +11,7 @@
                     <converters:NullConverter x:Key="CollapsedIfNull" Invert="True" />
                     <converters:NullConverter x:Key="CollapsedIfNotNull" />
                 </ResourceDictionary>
+                <ResourceDictionary Source="AppDefaultStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
