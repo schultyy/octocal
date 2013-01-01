@@ -154,7 +154,9 @@ namespace octocal.UI.Calendar.ViewModels
         public override void NotifyOfPropertyChange(string propertyName)
         {
             base.NotifyOfPropertyChange(propertyName);
-            LoadDaySchedule();
+
+            if (new[] { "title", "starttime", "endtime" }.Contains(propertyName.ToLower()))
+                LoadDaySchedule();
         }
 
         private void LoadDaySchedule()
