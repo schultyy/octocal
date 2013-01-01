@@ -128,6 +128,15 @@ namespace octocal.UI.Calendar.ViewModels
             TryClose();
         }
 
+        public void Delete()
+        {
+            if (messageBox.ShowYesNo("Are you sure that you want to delete this appointment?") == MessageBoxResult.Yes)
+            {
+                appointmentService.DeleteAppointment(technicalId);
+                TryClose();
+            }
+        }
+
         public void OnKeyDown(KeyEventArgs args)
         {
             if (args.Key == Key.Escape)

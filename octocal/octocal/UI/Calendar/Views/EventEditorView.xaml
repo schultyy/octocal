@@ -25,8 +25,9 @@
     <DockPanel LastChildFill="True">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                     DockPanel.Dock="Bottom">
-            <Button Content="Dismiss" Margin="5" Width="100" cal:Message.Attach="Dismiss" />
-            <Button Content="Save and close" Margin="5" Width="130" cal:Message.Attach="Save" />
+            <Button Content="Delete" Margin="5" Width="100" cal:Message.Attach="Delete" Foreground="Red" />
+            <Button Content="Dismiss" Margin="5" Width="100" cal:Message.Attach="Dismiss" Foreground="White" />
+            <Button Content="Save and close" Margin="5" Width="130" cal:Message.Attach="Save" Foreground="White" />
         </StackPanel>
         <StackPanel DockPanel.Dock="Top">
             <HeaderedContentControl Header="Title" Margin="5">

@@ -16,3 +16,4 @@ Dependencies
 	⁃	Castle, Windsor
 	⁃	Caliburn.Micro
 	⁃	Extended WPF Toolkit
+	⁃	Adobe Source code pro

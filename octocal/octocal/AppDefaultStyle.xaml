@@ -3,7 +3,7 @@
     <Style TargetType="{x:Type TextBlock}">
         <Setter Property="FontFamily" Value="./UI/Fonts/#Source Code Pro"/>
     </Style>
-    <Style TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
         <Setter Property="FontFamily" Value="Arial" />
     </Style>
 </ResourceDictionary>

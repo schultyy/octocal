@@ -97,6 +97,15 @@ namespace octocal.Domain
             Task.Factory.StartNew(Serialize);
         }
 
+        public void DeleteAppointment(Guid technicalId)
+        {
+            if (technicalId == Guid.Empty)
+                throw new ArgumentException("technicalId can not be Guid.empty");
+
+            allTimeList.Remove(allTimeList.Single(c => c.TechnicalId == technicalId));
+            Task.Factory.StartNew(Serialize);
+        }
+
         public void Reload()
         {
             Deserialize();

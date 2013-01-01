@@ -13,5 +13,6 @@ namespace octocal.Domain
         Appointment[] GetAllByStartDate(DateTime date);
         void DeleteAppointment(Appointment appointment);
         void Reload();
+        void DeleteAppointment(Guid technicalId);
     }
 }
