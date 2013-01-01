@@ -10,7 +10,11 @@
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="{Binding Date,StringFormat=dd.MM.yyyy}" Margin="5"
-                   FontSize="14" FontFamily="Arial" />
+                   FontSize="14" FontFamily="Arial"
+                           Visibility="{Binding IsToday, Converter={StaticResource CollapsedIfTrue}}"/>
+                <TextBlock Text="{Binding Date,StringFormat=dd.MM.yyyy}" Margin="5"
+                   FontSize="14" FontFamily="Arial" FontWeight="SemiBold" 
+                           Visibility="{Binding IsToday, Converter={StaticResource CollapsedIfFalse}}" />
                 <Rectangle Height="0.5" Fill="Black" HorizontalAlignment="Stretch" />
             </StackPanel>
             <ItemsControl ItemsSource="{Binding Appointments}">

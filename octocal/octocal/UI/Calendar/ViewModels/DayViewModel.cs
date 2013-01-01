@@ -21,7 +21,13 @@ namespace octocal.UI.Calendar.ViewModels
                     return;
                 date = value;
                 NotifyOfPropertyChange(() => Date);
+                NotifyOfPropertyChange(() => IsToday);
             }
+        }
+
+        public bool IsToday
+        {
+            get { return Date.Date == DateTime.Today.Date; }
         }
 
         private BindableCollection<Appointment> appointments;
