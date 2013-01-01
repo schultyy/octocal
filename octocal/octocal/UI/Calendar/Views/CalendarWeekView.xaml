@@ -12,23 +12,21 @@
                 <Button Content="Add event" cal:Message.Attach="AddEvent" />
                 <Button Content="Reload" cal:Message.Attach="Reload" />
             </ToolBar>
-            <ContentControl DockPanel.Dock="Top">
-                <ContentControl cal:View.Model="{Binding DetailsViewModel}"
-                            Margin="10" />
-            </ContentControl>
-            <ItemsControl ItemsSource="{Binding Days,Mode=TwoWay}"
-                      DockPanel.Dock="Bottom">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl cal:View.Model="{Binding}" Margin="5" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Rows="1"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+            <ScrollViewer DockPanel.Dock="Bottom">
+                <ItemsControl ItemsSource="{Binding Days,Mode=TwoWay}"
+                            ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl cal:View.Model="{Binding}" Margin="5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
         </DockPanel>
     </xctk:BusyIndicator>
 </UserControl>
