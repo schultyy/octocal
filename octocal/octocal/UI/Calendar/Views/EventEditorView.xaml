@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Width" Value="200" />
+            <Setter Property="Width" Value="250" />
             <Setter Property="Height" Value="25" />
         </Style>
         <Style TargetType="{x:Type xctk:DateTimePicker}">
