@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <xctk:BusyIndicator IsBusy="{Binding IsBusy}">
-        <DockPanel LastChildFill="True">
+        <DockPanel LastChildFill="True" Margin="5 0 5 0">
             <ToolBar DockPanel.Dock="Top" Background="Transparent">
                 <Button Content="Add event" cal:Message.Attach="AddEvent" />
                 <Button Content="Reload" cal:Message.Attach="Reload" />
@@ -17,7 +17,7 @@
                             ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <ContentControl cal:View.Model="{Binding}" Margin="5" />
+                            <ContentControl cal:View.Model="{Binding}" Margin="0" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>

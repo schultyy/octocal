@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using Caliburn.Micro;
 using Castle.Windsor;
 using octocal.Domain;
@@ -131,6 +132,19 @@ namespace octocal.UI.Calendar.ViewModels
             eventEditor.Edit(currentAppointment);
             container.Resolve<IWindowManager>().ShowModal(eventEditor);
             BuildUp();
+        }
+
+        public void OnKeyDown(KeyEventArgs args)
+        {
+            if (args == null)
+                return;
+            switch (args.Key)
+            {
+                case Key.Left:
+                    break;
+                case Key.Right:
+                    break;
+            }
         }
     }
 }
