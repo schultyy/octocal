@@ -84,6 +84,11 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
+        public bool CanDelete
+        {
+            get { return technicalId != Guid.Empty; }
+        }
+
         private Guid technicalId;
 
         private IMessageBoxService messageBox;
@@ -97,6 +102,7 @@ namespace octocal.UI.Calendar.ViewModels
             this.StartTime = DateTime.Today.AddHours(DateTime.Now.Hour);
             this.EndTime = StartTime.AddHours(1);
             this.technicalId = Guid.Empty;
+            NotifyOfPropertyChange(() => CanDelete);
         }
 
         public void Edit(Appointment appointment)
@@ -107,6 +113,7 @@ namespace octocal.UI.Calendar.ViewModels
             this.Title = appointment.Title;
             this.technicalId = appointment.TechnicalId;
             this.Location = appointment.Location;
+            NotifyOfPropertyChange(() => CanDelete);
         }
 
         public void Dismiss()

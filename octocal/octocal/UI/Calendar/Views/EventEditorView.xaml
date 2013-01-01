@@ -6,6 +6,7 @@
              xmlns:cal="http://www.caliburnproject.org" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Margin="5"
+             FontSize="12"
              cal:Message.Attach="[Event KeyDown] = [Action OnKeyDown($eventargs)]">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBox}">
@@ -25,8 +26,8 @@
     <DockPanel LastChildFill="True">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                     DockPanel.Dock="Bottom">
-            <Button Content="Delete" Margin="5" Width="100" cal:Message.Attach="Delete" Foreground="Red" />
             <Button Content="Dismiss" Margin="5" Width="100" cal:Message.Attach="Dismiss" Foreground="White" />
+            <Button Content="Delete" Margin="5" Width="100" cal:Message.Attach="Delete" Foreground="Red" />
             <Button Content="Save and close" Margin="5" Width="130" cal:Message.Attach="Save" Foreground="White" />
         </StackPanel>
         <StackPanel DockPanel.Dock="Top">
