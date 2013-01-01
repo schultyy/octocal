@@ -12,6 +12,11 @@
                 <Button Content="Add event" cal:Message.Attach="AddEvent" />
                 <Button Content="Reload" cal:Message.Attach="Reload" />
             </ToolBar>
+            <StackPanel DockPanel.Dock="top" Orientation="Horizontal">
+                <Button Content="&lt;&lt;" Width="30" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="PreviousWeek" />
+                <Button Content="Current week" Width="100" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="CurrentWeek" />
+                <Button Content=">>" Width="30" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="NextWeek" />
+            </StackPanel>
             <ScrollViewer DockPanel.Dock="Bottom">
                 <ItemsControl ItemsSource="{Binding Days,Mode=TwoWay}"
                             ScrollViewer.VerticalScrollBarVisibility="Auto">

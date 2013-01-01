@@ -69,6 +69,8 @@ namespace octocal.UI.Calendar.ViewModels
 
         private IAppointmentService appointmentService;
 
+        private int currentOffset = 0;
+
         public CalendarWeekViewModel(IWindsorContainer container, IAppointmentService service)
         {
             this.container = container;
@@ -83,7 +85,7 @@ namespace octocal.UI.Calendar.ViewModels
             Days.Clear();
             DateTime startOfWeek = DateTime.Today;
             int delta = DayOfWeek.Monday - startOfWeek.DayOfWeek;
-            startOfWeek = startOfWeek.AddDays(delta);
+            startOfWeek = startOfWeek.AddDays(delta).AddDays(currentOffset * 7);
 
             DateTime endOfWeek = startOfWeek.AddDays(7);
 
@@ -134,17 +136,22 @@ namespace octocal.UI.Calendar.ViewModels
             BuildUp();
         }
 
-        public void OnKeyDown(KeyEventArgs args)
+        public void CurrentWeek()
         {
-            if (args == null)
-                return;
-            switch (args.Key)
-            {
-                case Key.Left:
-                    break;
-                case Key.Right:
-                    break;
-            }
+            currentOffset = 0;
+            BuildUp();
+        }
+
+        public void PreviousWeek()
+        {
+            currentOffset--;
+            BuildUp();
+        }
+
+        public void NextWeek()
+        {
+            currentOffset++;
+            BuildUp();
         }
     }
 }
