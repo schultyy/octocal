@@ -194,6 +194,7 @@ namespace octocal.UI.Calendar.ViewModels
 
         public void Save()
         {
+            Validate();
             appointmentService.SaveAppointment(new Appointment
                                                    {
                                                        Description = Description,
@@ -204,6 +205,18 @@ namespace octocal.UI.Calendar.ViewModels
                                                        Location = location
                                                    });
             TryClose();
+        }
+
+        private void Validate()
+        {
+            var results = new List<string>();
+            if (EndTime < StartTime)
+                results.Add("EndTime can not lay in the past");
+            if (string.IsNullOrEmpty(Title))
+                results.Add("Title must not be null or empty");
+
+            if (results.Count > 0)
+                throw new Exception(String.Join("\n", results));
         }
 
         public void Delete()
