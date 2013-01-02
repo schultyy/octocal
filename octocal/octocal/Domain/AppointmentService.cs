@@ -13,6 +13,8 @@ namespace octocal.Domain
         private readonly string storageDirectory =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "octocal");
 
+        private readonly string filename = "allTimeList.xml";
+
         private List<Appointment> allTimeList;
 
         public AppointmentService()
@@ -20,10 +22,10 @@ namespace octocal.Domain
             allTimeList = new List<Appointment>();
 
             if (!Directory.Exists(storageDirectory))
-            {
                 Directory.CreateDirectory(storageDirectory);
+
+            if (!File.Exists(Path.Combine(storageDirectory, filename)))
                 Serialize();
-            }
 
             Deserialize();
         }
@@ -51,7 +53,7 @@ namespace octocal.Domain
 
         private void Deserialize()
         {
-            using (var stream = new StreamReader(Path.Combine(storageDirectory, "allTimeList.xml")))
+            using (var stream = new StreamReader(Path.Combine(storageDirectory, filename)))
             {
                 var serializer = new XmlSerializer(typeof(List<Appointment>));
                 allTimeList = serializer.Deserialize(stream) as List<Appointment>;
@@ -60,7 +62,7 @@ namespace octocal.Domain
 
         private void Serialize()
         {
-            using (var streamWriter = new StreamWriter(Path.Combine(storageDirectory, "allTimeList.xml")))
+            using (var streamWriter = new StreamWriter(Path.Combine(storageDirectory, filename)))
             {
                 var serializer = new XmlSerializer(typeof(List<Appointment>));
                 serializer.Serialize(streamWriter, allTimeList);
