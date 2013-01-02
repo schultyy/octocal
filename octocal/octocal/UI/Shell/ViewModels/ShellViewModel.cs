@@ -31,13 +31,4 @@ namespace octocal.UI.Shell.ViewModels
             this.CloseStrategy = new DefaultCloseStrategy<ShellContentBase>(true);
         }
     }
-
-    public class ShellContentBase : Screen
-    {
-        public IShell Shell { get; set; }
-    }
-
-    public interface IShell
-    {
-    }
 }

@@ -78,16 +78,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ApplicationContainer.cs" />
     <Compile Include="CastleBootstrapper.cs" />
     <Compile Include="Domain\Appointment.cs" />
     <Compile Include="Domain\AppointmentService.cs" />
     <Compile Include="Domain\IAppointmentService.cs" />
+    <Compile Include="ForEachExtension.cs" />
     <Compile Include="UI\Calendar\ViewModels\CalendarWeekViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\DayViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\EventEditorViewModel.cs" />
+    <Compile Include="UI\Calendar\ViewModels\ScheduleViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToVisibiltyConverter.cs" />
     <Compile Include="UI\Converters\NullConverter.cs" />
+    <Compile Include="UI\Services\IMessageBoxService.cs" />
     <Compile Include="UI\Services\MessageBoxService.cs" />
+    <Compile Include="UI\Shell\ViewModels\IShell.cs" />
+    <Compile Include="UI\Shell\ViewModels\ShellContentBase.cs" />
     <Compile Include="UI\Shell\ViewModels\ShellViewModel.cs" />
     <Compile Include="UI\WindowManagerExtensions.cs" />
   </ItemGroup>

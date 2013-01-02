@@ -9,8 +9,6 @@ using Castle.Core;
 using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using octocal.Domain;
-using octocal.UI.Services;
 using octocal.UI.Shell.ViewModels;
 
 namespace octocal
@@ -65,38 +63,5 @@ namespace octocal
         }
     }
 
-    public class ApplicationContainer : WindsorContainer
-    {
-        public ApplicationContainer()
-        {
-            Register(
-                Component.For<IWindowManager>().ImplementedBy<WindowManager>().LifeStyle.Is(LifestyleType.Singleton),
-                Component.For<IEventAggregator>().ImplementedBy<EventAggregator>().LifeStyle.Is(LifestyleType.Singleton),
-                Component.For<IMessageBoxService>().ImplementedBy<MessageBoxService>().LifeStyle.Is(LifestyleType.Singleton),
-                Component.For<IAppointmentService>().ImplementedBy<AppointmentService>().LifeStyle.Is(LifestyleType.Singleton)
-                );
-
-            //RegisterViewModels();
-        }
-
-        private void RegisterViewModels()
-        {
-            Register(AllTypes.FromAssembly(GetType().Assembly)
-                            .Where(x => x.Name.EndsWith("ViewModel"))
-                            .Configure(x => x.LifeStyle.Is(LifestyleType.Transient)));
-        }
-    }
-
     // If you don't already have a ForEach extension method in your project here you go:
-
-    public static class ForEachExtension
-    {
-        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
-        {
-            foreach (T element in source)
-            {
-                action(element);
-            }
-        }
-    }
 }
