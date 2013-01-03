@@ -1,63 +1,37 @@
 using System;
+using System.Data.SqlTypes;
 using Caliburn.Micro;
+using octocal.Domain;
 
 namespace octocal.UI.Calendar.ViewModels
 {
     public class ScheduleViewModel : PropertyChangedBase
     {
-        private DateTime startTime;
+        private string hour;
 
-        public DateTime StartTime
+        public string Hour
         {
-            get { return startTime; }
+            get { return hour; }
             set
             {
-                if (startTime == value)
+                if (hour == value)
                     return;
-                startTime = value;
-                NotifyOfPropertyChange(() => StartTime);
+                hour = value;
+                NotifyOfPropertyChange(() => Hour);
             }
         }
 
-        private DateTime endTime;
+        private Appointment appointment;
 
-        public DateTime EndTime
+        public Appointment Appointment
         {
-            get { return endTime; }
+            get { return appointment; }
             set
             {
-                if (endTime == value)
+                if (appointment == value)
                     return;
-                endTime = value;
-                NotifyOfPropertyChange(() => EndTime);
-            }
-        }
-
-        private string title;
-
-        public string Title
-        {
-            get { return title; }
-            set
-            {
-                if (title == value)
-                    return;
-                title = value;
-                NotifyOfPropertyChange(() => Title);
-            }
-        }
-
-        private bool isCurrentAppointment;
-
-        public bool IsCurrentAppointment
-        {
-            get { return isCurrentAppointment; }
-            set
-            {
-                if (isCurrentAppointment == value)
-                    return;
-                isCurrentAppointment = value;
-                NotifyOfPropertyChange(() => IsCurrentAppointment);
+                appointment = value;
+                NotifyOfPropertyChange(() => Appointment);
             }
         }
     }

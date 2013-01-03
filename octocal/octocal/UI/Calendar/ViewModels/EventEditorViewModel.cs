@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlTypes;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,7 +59,6 @@ namespace octocal.UI.Calendar.ViewModels
                     return;
                 startTime = value;
                 NotifyOfPropertyChange(() => StartTime);
-                LoadDaySchedule();
             }
         }
 
@@ -137,6 +137,7 @@ namespace octocal.UI.Calendar.ViewModels
             this.EndTime = StartTime.AddHours(1);
             this.Title = string.Empty;
             this.technicalId = Guid.Empty;
+            LoadDaySchedule();
             NotifyOfPropertyChange(() => CanDelete);
         }
 
@@ -148,42 +149,34 @@ namespace octocal.UI.Calendar.ViewModels
             this.Title = appointment.Title;
             this.technicalId = appointment.TechnicalId;
             this.Location = appointment.Location;
+            LoadDaySchedule();
             NotifyOfPropertyChange(() => CanDelete);
-        }
-
-        public override void NotifyOfPropertyChange(string propertyName)
-        {
-            base.NotifyOfPropertyChange(propertyName);
-
-            if (new[] { "title", "starttime", "endtime" }.Contains(propertyName.ToLower()))
-                LoadDaySchedule();
         }
 
         private void LoadDaySchedule()
         {
-            IsDayScheduleLoading = false;
+            if (IsDayScheduleLoading)
+                return;
+            IsDayScheduleLoading = true;
             Task.Factory.StartNew(LoadDayScheduleInternal);
         }
 
         private void LoadDayScheduleInternal()
         {
-            var schedule = appointmentService.GetAllByStartDate(this.StartTime).Select(c => new ScheduleViewModel
+            DaySchedule = new BindableCollection<ScheduleViewModel>();
+            for (var i = 0; i < 24; i++)
             {
-                StartTime = c.StartDate,
-                EndTime = c.EndDate,
-                Title = c.Title
-            })
-            .Concat(new[]{new ScheduleViewModel
-                              {
-                                  EndTime = EndTime,
-                                  Title = this.Title,
-                                  IsCurrentAppointment = true,
-                                  StartTime = StartTime
-                              }})
-            .OrderBy(c => c.StartTime)
-            .ThenBy(c => c.EndTime);
+                if (i < 10)
+                {
+                    var hourFormat = string.Format("0{0}", i);
+                    this.DaySchedule.Add(new ScheduleViewModel { Hour = hourFormat });
+                }
+                else
+                    this.DaySchedule.Add(new ScheduleViewModel { Hour = i.ToString(CultureInfo.InvariantCulture) });
+            }
 
-            DaySchedule = new BindableCollection<ScheduleViewModel>(schedule);
+            foreach (var appointment in appointmentService.GetAllByStartDate(this.StartTime))
+                DaySchedule.Single(c => Convert.ToInt32(c.Hour) == appointment.StartDate.Hour).Appointment = appointment;
             Dispatcher.CurrentDispatcher.Invoke(new Action(() => IsDayScheduleLoading = false));
         }
 
