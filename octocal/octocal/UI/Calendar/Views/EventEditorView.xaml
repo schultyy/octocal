@@ -57,17 +57,20 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel>
+                                    <Rectangle Style="{StaticResource WhiteHorizontalLine}"
+                                               DockPanel.Dock="Bottom" Margin="0 0 0 5" />
                                     <StackPanel DockPanel.Dock="Left">
-                                        <Rectangle Style="{StaticResource WhiteHorizontalLine}" />
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Hour}" FontSize="18" />
                                             <TextBlock Text="00" FontSize="12" VerticalAlignment="Top"
                                                        TextDecorations="Underline" />
                                         </StackPanel>
-                                        <Rectangle Style="{StaticResource WhiteHorizontalLine}" />
                                     </StackPanel>
-                                    <TextBlock Text="{Binding Appointment.Title}" Foreground="Orange" FontFamily="./UI/Fonts/#Source Code Pro"
-                                                   DockPanel.Dock="Right" FontSize="14" Margin="20 5 0 5" />
+                                    <TextBlock Text="{Binding Appointment.Title}"
+                                                   Foreground="Orange"
+                                                   FontFamily="./UI/Fonts/#Source Code Pro"
+                                                   FontSize="14" Margin="20 5 0 5"
+                                                   DockPanel.Dock="Right"/>
                                 </DockPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
