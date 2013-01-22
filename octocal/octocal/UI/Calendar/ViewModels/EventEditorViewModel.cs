@@ -59,6 +59,8 @@ namespace octocal.UI.Calendar.ViewModels
                     return;
                 startTime = value;
                 NotifyOfPropertyChange(() => StartTime);
+
+                CheckTime();
             }
         }
 
@@ -210,6 +212,15 @@ namespace octocal.UI.Calendar.ViewModels
 
             if (results.Count > 0)
                 throw new Exception(String.Join("\n", results));
+        }
+
+        private void CheckTime()
+        {
+            if (StartTime.Day > EndTime.Day)
+                EndTime = EndTime.AddDays(StartTime.Day - EndTime.Day);
+
+            if (StartTime.Hour > EndTime.Hour)
+                EndTime = EndTime.AddHours(StartTime.Hour - EndTime.Hour + 1);
         }
 
         public void Delete()
