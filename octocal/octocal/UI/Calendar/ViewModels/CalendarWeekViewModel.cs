@@ -23,9 +23,9 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
-        private BindableCollection<DayViewModel> days;
+        private BindableCollection<DayTileViewModel> days;
 
-        public BindableCollection<DayViewModel> Days
+        public BindableCollection<DayTileViewModel> Days
         {
             get { return days; }
             set
@@ -75,7 +75,7 @@ namespace octocal.UI.Calendar.ViewModels
         {
             this.container = container;
             this.appointmentService = service;
-            Days = new BindableCollection<DayViewModel>();
+            Days = new BindableCollection<DayTileViewModel>();
             BuildUp();
         }
 
@@ -93,7 +93,7 @@ namespace octocal.UI.Calendar.ViewModels
 
             while (currentDay < endOfWeek)
             {
-                Days.Add(new DayViewModel { Date = currentDay, Appointments = new BindableCollection<Appointment>(appointmentService.GetAllByStartDate(currentDay)) });
+                Days.Add(new DayTileViewModel { Date = currentDay, Appointments = new BindableCollection<Appointment>(appointmentService.GetAllByStartDate(currentDay)) });
                 currentDay = currentDay.AddDays(1);
             }
             IsBusy = false;

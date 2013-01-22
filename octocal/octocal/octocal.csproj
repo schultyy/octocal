@@ -85,7 +85,7 @@
     <Compile Include="Domain\IAppointmentService.cs" />
     <Compile Include="ForEachExtension.cs" />
     <Compile Include="UI\Calendar\ViewModels\CalendarWeekViewModel.cs" />
-    <Compile Include="UI\Calendar\ViewModels\DayViewModel.cs" />
+    <Compile Include="UI\Calendar\ViewModels\DayTileViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\EventEditorViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\ScheduleViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToVisibiltyConverter.cs" />
@@ -142,7 +142,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Calendar\Views\DayView.xaml">
+    <Page Include="UI\Calendar\Views\DayTileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

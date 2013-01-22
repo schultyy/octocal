@@ -8,7 +8,7 @@ using octocal.Domain;
 
 namespace octocal.UI.Calendar.ViewModels
 {
-    public class DayViewModel : Screen
+    public class DayTileViewModel : Screen
     {
         private DateTime date;
 
@@ -44,7 +44,7 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
-        public DayViewModel()
+        public DayTileViewModel()
         {
             Appointments = new BindableCollection<Appointment>();
         }
