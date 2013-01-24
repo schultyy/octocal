@@ -14,13 +14,14 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel>
+                    <DockPanel Margin="20">
                         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                             <TextBlock Text="{Binding Hour}" FontSize="20" />
                             <TextBlock Text="00" FontSize="14" VerticalAlignment="Top"
                                        Margin="2 0 0 0" TextDecorations="Underline" />
                         </StackPanel>
-                        <ItemsControl DockPanel.Dock="Right" ItemsSource="{Binding Appointments,Mode=TwoWay}">
+                        <ItemsControl DockPanel.Dock="Right" ItemsSource="{Binding Appointments,Mode=TwoWay}"
+                                      Margin="20 0 0 0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" />
@@ -28,8 +29,9 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="White" BorderThickness="0.35">
-                                        <TextBlock Text="{Binding Title}" FontSize="18" Margin="10 0 0 0" />
+                                    <Border BorderBrush="White" BorderThickness="0.35" CornerRadius="0.25">
+                                        <TextBlock Text="{Binding Title}" FontSize="18" Margin="5" 
+                                                   FontFamily="./UI/Fonts/#Source Code Pro"/>
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
