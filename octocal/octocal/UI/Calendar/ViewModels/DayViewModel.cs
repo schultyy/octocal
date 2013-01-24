@@ -47,7 +47,7 @@ namespace octocal.UI.Calendar.ViewModels
         private void BuildupTimeLine()
         {
             TimeLine.Clear();
-            for (var i = 1; i < 25; i++)
+            for (var i = 0 ; i < 24; i++)
                 TimeLine.Add(new HourPartViewModel { Hour = i });
             LoadDaySchedule();
         }
