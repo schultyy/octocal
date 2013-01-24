@@ -9,6 +9,7 @@ namespace octocal.UI.Calendar.ViewModels
 {
     public class DayViewModel : ShellContentBase
     {
+        private readonly IWindsorContainer container;
         private readonly IAppointmentService service;
         private readonly DateTime currentDayDate;
 
@@ -29,11 +30,20 @@ namespace octocal.UI.Calendar.ViewModels
         public DayViewModel(IWindsorContainer container,
             IAppointmentService service)
         {
+            this.container = container;
             this.service = service;
             this.currentDayDate = DateTime.Today;
             DisplayName = "Day Schedule";
             TimeLine = new BindableCollection<HourPartViewModel>();
 
+            BuildupTimeLine();
+        }
+
+        public void ShowDetails(Appointment currentAppointment)
+        {
+            var eventEditor = container.Resolve<EventEditorViewModel>();
+            eventEditor.Edit(currentAppointment);
+            container.Resolve<IWindowManager>().ShowModal(eventEditor);
             BuildupTimeLine();
         }
 
@@ -47,7 +57,7 @@ namespace octocal.UI.Calendar.ViewModels
         private void BuildupTimeLine()
         {
             TimeLine.Clear();
-            for (var i = 0 ; i < 24; i++)
+            for (var i = 0; i < 24; i++)
                 TimeLine.Add(new HourPartViewModel { Hour = i });
             LoadDaySchedule();
         }
