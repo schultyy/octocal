@@ -20,7 +20,7 @@
             <ItemsControl ItemsSource="{Binding Appointments}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border CornerRadius="3" BorderBrush="LightGray" BorderThickness="0.5" Margin="5">
+                        <Border CornerRadius="2" BorderBrush="LightGray" BorderThickness="0.25" Margin="5">
                             <Border.ContextMenu>
                                 <ContextMenu>
                                     <Button cal:Message.Attach="Delete($datacontext)">
