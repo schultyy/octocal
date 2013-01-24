@@ -12,9 +12,9 @@ namespace octocal.UI.Calendar.ViewModels
         private readonly IAppointmentService service;
         private readonly DateTime currentDayDate;
 
-        private BindableCollection<HourPart> timeLine;
+        private BindableCollection<HourPartViewModel> timeLine;
 
-        public BindableCollection<HourPart> TimeLine
+        public BindableCollection<HourPartViewModel> TimeLine
         {
             get { return timeLine; }
             set
@@ -32,16 +32,24 @@ namespace octocal.UI.Calendar.ViewModels
             this.service = service;
             this.currentDayDate = DateTime.Today;
             DisplayName = "Day Schedule";
-            TimeLine = new BindableCollection<HourPart>();
+            TimeLine = new BindableCollection<HourPartViewModel>();
 
             BuildupTimeLine();
-            LoadDaySchedule();
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+
+            BuildupTimeLine();
         }
 
         private void BuildupTimeLine()
         {
+            TimeLine.Clear();
             for (var i = 1; i < 25; i++)
-                TimeLine.Add(new HourPart { Hour = i });
+                TimeLine.Add(new HourPartViewModel { Hour = i });
+            LoadDaySchedule();
         }
 
         private void LoadDaySchedule()

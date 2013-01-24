@@ -88,7 +88,7 @@
     <Compile Include="UI\Calendar\ViewModels\DayTileViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\DayViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\EventEditorViewModel.cs" />
-    <Compile Include="UI\Calendar\ViewModels\HourPart.cs" />
+    <Compile Include="UI\Calendar\ViewModels\HourPartViewModel.cs" />
     <Compile Include="UI\Calendar\ViewModels\ScheduleViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToVisibiltyConverter.cs" />
     <Compile Include="UI\Converters\NullConverter.cs" />

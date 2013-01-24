@@ -3,7 +3,7 @@ using octocal.Domain;
 
 namespace octocal.UI.Calendar.ViewModels
 {
-    public class HourPart : PropertyChangedBase
+    public class HourPartViewModel : PropertyChangedBase
     {
         private int hour;
 
@@ -33,7 +33,7 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
-        public HourPart()
+        public HourPartViewModel()
         {
             Appointments = new BindableCollection<Appointment>();
         }
