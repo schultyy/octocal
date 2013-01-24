@@ -1,32 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Text;
 using Caliburn.Micro;
 using Castle.Windsor;
 using octocal.Domain;
+using octocal.UI.Shell.ViewModels;
 
 namespace octocal.UI.Calendar.ViewModels
 {
-    public class DayViewModel : Screen
+    public class DayViewModel : ShellContentBase
     {
         private readonly IAppointmentService service;
         private readonly DateTime currentDayDate;
-
-        private BindableCollection<Appointment> appointments;
-
-        public BindableCollection<Appointment> Appointments
-        {
-            get { return appointments; }
-            set
-            {
-                if (appointments == value)
-                    return;
-                appointments = value;
-                NotifyOfPropertyChange(() => Appointments);
-            }
-        }
 
         private BindableCollection<HourPart> timeLine;
 
@@ -43,12 +27,12 @@ namespace octocal.UI.Calendar.ViewModels
         }
 
         public DayViewModel(IWindsorContainer container,
-            IAppointmentService service,
-            DateTime currentDayDate)
+            IAppointmentService service)
         {
             this.service = service;
-            this.currentDayDate = currentDayDate;
+            this.currentDayDate = DateTime.Today;
             DisplayName = "Day Schedule";
+            TimeLine = new BindableCollection<HourPart>();
 
             BuildupTimeLine();
             LoadDaySchedule();
@@ -71,42 +55,6 @@ namespace octocal.UI.Calendar.ViewModels
 
                 hourPart.Appointments.Add(appointment);
             }
-        }
-    }
-
-    public class HourPart : PropertyChangedBase
-    {
-        private int hour;
-
-        public int Hour
-        {
-            get { return hour; }
-            set
-            {
-                if (hour == value)
-                    return;
-                hour = value;
-                NotifyOfPropertyChange(() => Hour);
-            }
-        }
-
-        private BindableCollection<Appointment> appointments;
-
-        public BindableCollection<Appointment> Appointments
-        {
-            get { return appointments; }
-            set
-            {
-                if (appointments == value)
-                    return;
-                appointments = value;
-                NotifyOfPropertyChange(() => Appointments);
-            }
-        }
-
-        public HourPart()
-        {
-            Appointments = new BindableCollection<Appointment>();
         }
     }
 }

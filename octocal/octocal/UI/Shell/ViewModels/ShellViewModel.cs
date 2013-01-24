@@ -9,8 +9,9 @@ namespace octocal.UI.Shell.ViewModels
 {
     public class ShellViewModel : Conductor<ShellContentBase>.Collection.OneActive, IShell
     {
-        public ShellViewModel(CalendarWeekViewModel child)
+        public ShellViewModel(CalendarWeekViewModel child, DayViewModel dayViewModel)
         {
+            this.Items.Add(dayViewModel);
             this.ActivateItem(child);
             DisplayName = "octocal - strange name, great software";
         }
@@ -27,7 +28,7 @@ namespace octocal.UI.Shell.ViewModels
 
         public override void TryClose(bool? dialogResult)
         {
-            base.TryClose(dialogResult);  
+            base.TryClose(dialogResult);
             this.CloseStrategy = new DefaultCloseStrategy<ShellContentBase>(true);
         }
     }
