@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:cal="http://www.caliburnproject.org" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Margin="5"
+             d:DesignHeight="300" d:DesignWidth="700" Margin="5"
              FontSize="12"
              cal:Message.Attach="[Event KeyDown] = [Action OnKeyDown($eventargs)]">
     <UserControl.Resources>
@@ -35,17 +35,19 @@
                 <HeaderedContentControl Header="Title" Margin="5">
                     <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                 </HeaderedContentControl>
+                <HeaderedContentControl Header="Start date" Margin="5">
+                    <xctk:DateTimePicker Value="{Binding StartTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                         BorderBrush="{x:Null}"/>
+                </HeaderedContentControl>
+                <HeaderedContentControl Header="End date" Margin="5">
+                    <xctk:DateTimePicker Value="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         BorderBrush="{x:Null}"/>
+                </HeaderedContentControl>
                 <HeaderedContentControl Header="Description" Margin="5">
                     <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                 </HeaderedContentControl>
                 <HeaderedContentControl Header="Location" Margin="5">
                     <TextBox Text="{Binding Location,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
-                </HeaderedContentControl>
-                <HeaderedContentControl Header="Start date" Margin="5">
-                    <xctk:DateTimePicker Value="{Binding StartTime, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                </HeaderedContentControl>
-                <HeaderedContentControl Header="End date" Margin="5">
-                    <xctk:DateTimePicker Value="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </HeaderedContentControl>
             </StackPanel>
             <ScrollViewer Margin="15 0 0 0"
@@ -67,7 +69,7 @@
                                         </StackPanel>
                                     </StackPanel>
                                     <TextBlock Text="{Binding Appointment.Title}"
-                                                   Foreground="Orange"
+                                                   Foreground="OrangeRed"
                                                    FontFamily="./UI/Fonts/#Source Code Pro"
                                                    FontSize="14" Margin="20 5 0 5"
                                                    DockPanel.Dock="Right"/>

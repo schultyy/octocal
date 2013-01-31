@@ -30,7 +30,7 @@ namespace octocal.UI
             options.AllowsTransparency = true;
             options.Background = new SolidColorBrush(Color.FromRgb(51, 51, 51));
             options.Foreground = new SolidColorBrush(Colors.White);
-            options.WindowStartupLocation = WindowStartupLocation.Manual;
+            options.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             options.Width = 600;
             options.Height = 400;
             options.Margin = new Thickness(10);
