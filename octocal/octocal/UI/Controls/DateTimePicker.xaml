@@ -7,14 +7,18 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <ComboBox ItemsSource="{Binding DateTime.Days}" SelectedItem="{Binding DateTime.SelectedDay}" />
+            <ComboBox ItemsSource="{Binding DateTime.Days}" SelectedItem="{Binding DateTime.SelectedDay}" Margin="2" 
+                      Width="100"/>
             <ComboBox ItemsSource="{Binding DateTime.Months}" SelectedItem="{Binding DateTime.SelectedMonth}"
-                                  DisplayMemberPath="Value" />
-            <ComboBox ItemsSource="{Binding DateTime.Years}" SelectedItem="{Binding DateTime.SelectedYear}" />
+                        Margin="2" Width="100" DisplayMemberPath="Value" />
+            <ComboBox ItemsSource="{Binding DateTime.Years}" SelectedItem="{Binding DateTime.SelectedYear}" 
+                      Width="100" Margin="2" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <ComboBox ItemsSource="{Binding DateTime.Hours}" SelectedItem="{Binding DateTime.SelectedHour}" />
-            <ComboBox ItemsSource="{Binding DateTime.Minutes}" SelectedItem="{Binding DateTime.SelectedMinute}" />
+            <ComboBox ItemsSource="{Binding DateTime.Hours}" Margin="2" SelectedItem="{Binding DateTime.SelectedHour}"
+                      Width="100" />
+            <ComboBox ItemsSource="{Binding DateTime.Minutes}" Margin="2" SelectedItem="{Binding DateTime.SelectedMinute}"
+                      Width="100" />
         </StackPanel>
     </StackPanel>
 </UserControl>
