@@ -5,10 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Orientation="Horizontal">
-        <ComboBox ItemsSource="{Binding DateTime.Days}" SelectedItem="{Binding DateTime.SelectedDay}" />
-        <ComboBox ItemsSource="{Binding DateTime.Months}" SelectedItem="{Binding DateTime.SelectedMonth}"
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <ComboBox ItemsSource="{Binding DateTime.Days}" SelectedItem="{Binding DateTime.SelectedDay}" />
+            <ComboBox ItemsSource="{Binding DateTime.Months}" SelectedItem="{Binding DateTime.SelectedMonth}"
                                   DisplayMemberPath="Value" />
-        <ComboBox ItemsSource="{Binding DateTime.Years}" SelectedItem="{Binding DateTime.SelectedYear}" />
+            <ComboBox ItemsSource="{Binding DateTime.Years}" SelectedItem="{Binding DateTime.SelectedYear}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <ComboBox ItemsSource="{Binding DateTime.Hours}" SelectedItem="{Binding DateTime.SelectedHour}" />
+            <ComboBox ItemsSource="{Binding DateTime.Minutes}" SelectedItem="{Binding DateTime.SelectedMinute}" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

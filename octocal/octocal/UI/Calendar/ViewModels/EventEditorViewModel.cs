@@ -44,36 +44,6 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
-        private DateTime startTime;
-
-        public DateTime StartTime
-        {
-            get { return startTime; }
-            set
-            {
-                if (startTime == value)
-                    return;
-                startTime = value;
-                NotifyOfPropertyChange(() => StartTime);
-
-                CheckTime();
-            }
-        }
-
-        private DateTime endTime;
-
-        public DateTime EndTime
-        {
-            get { return endTime; }
-            set
-            {
-                if (endTime == value)
-                    return;
-                endTime = value;
-                NotifyOfPropertyChange(() => EndTime);
-            }
-        }
-
         private string location;
 
         public string Location
@@ -160,13 +130,13 @@ namespace octocal.UI.Calendar.ViewModels
         {
             messageBox = service;
             this.appointmentService = appointmentService;
-            this.StartTime = DateTime.Today.AddHours(DateTime.Now.Hour);
-            this.EndTime = StartTime.AddHours(1);
+
             this.Title = string.Empty;
             this.technicalId = Guid.Empty;
 
             StartTimeViewModel = new DateTimeViewModel();
             EndTimeViewModel = new DateTimeViewModel();
+            EndTimeViewModel.SelectedHour = StartTimeViewModel.SelectedHour + 1;
 
             LoadDaySchedule();
             NotifyOfPropertyChange(() => CanDelete);
@@ -175,8 +145,7 @@ namespace octocal.UI.Calendar.ViewModels
         public void Edit(Appointment appointment)
         {
             this.Description = appointment.Description;
-            this.EndTime = appointment.EndDate;
-            //this.StartTime = appointment.StartDate;
+            this.EndTimeViewModel = new DateTimeViewModel(appointment.EndDate);
             this.StartTimeViewModel = new DateTimeViewModel(appointment.StartDate);
             this.Title = appointment.Title;
             this.technicalId = appointment.TechnicalId;
@@ -207,7 +176,7 @@ namespace octocal.UI.Calendar.ViewModels
                     this.DaySchedule.Add(new ScheduleViewModel { Hour = i.ToString(CultureInfo.InvariantCulture) });
             }
 
-            foreach (var appointment in appointmentService.GetAllByStartDate(this.StartTime))
+            foreach (var appointment in appointmentService.GetAllByStartDate(this.StartTimeViewModel.DateTime))
                 DaySchedule.Single(c => Convert.ToInt32(c.Hour) == appointment.StartDate.Hour).Appointment = appointment;
             Dispatcher.CurrentDispatcher.Invoke(new Action(() => IsDayScheduleLoading = false));
         }
@@ -223,7 +192,7 @@ namespace octocal.UI.Calendar.ViewModels
             appointmentService.SaveAppointment(new Appointment
                                                    {
                                                        Description = Description,
-                                                       EndDate = EndTime,
+                                                       EndDate = EndTimeViewModel.DateTime,
                                                        StartDate = StartTimeViewModel.DateTime,
                                                        Title = Title,
                                                        TechnicalId = technicalId,
@@ -235,7 +204,7 @@ namespace octocal.UI.Calendar.ViewModels
         private void Validate()
         {
             var results = new List<string>();
-            if (EndTime < StartTime)
+            if (EndTimeViewModel.DateTime < StartTimeViewModel.DateTime)
                 results.Add("EndTime can not lay in the past");
             if (string.IsNullOrEmpty(Title))
                 results.Add("Title must not be null or empty");
@@ -246,11 +215,11 @@ namespace octocal.UI.Calendar.ViewModels
 
         private void CheckTime()
         {
-            if (StartTime.Day > EndTime.Day)
-                EndTime = EndTime.AddDays(StartTime.Day - EndTime.Day);
+            if (StartTimeViewModel.SelectedDay > EndTimeViewModel.SelectedDay)
+                EndTimeViewModel = new DateTimeViewModel(EndTimeViewModel.DateTime.AddDays(StartTimeViewModel.SelectedDay - EndTimeViewModel.SelectedDay));
 
-            if (StartTime.Hour > EndTime.Hour)
-                EndTime = EndTime.AddHours(StartTime.Hour - EndTime.Hour + 1);
+            if (StartTimeViewModel.SelectedHour > EndTimeViewModel.SelectedHour)
+                EndTimeViewModel = new DateTimeViewModel(EndTimeViewModel.DateTime.AddHours(StartTimeViewModel.SelectedHour - EndTimeViewModel.SelectedHour + 1));
         }
 
         public void Delete()

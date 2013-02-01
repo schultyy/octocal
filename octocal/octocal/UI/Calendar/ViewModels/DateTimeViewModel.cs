@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -94,11 +95,67 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
+        private BindableCollection<int> hours;
+
+        public BindableCollection<int> Hours
+        {
+            get { return hours; }
+            set
+            {
+                if (hours == value)
+                    return;
+                hours = value;
+                NotifyOfPropertyChange(() => Hours);
+            }
+        }
+
+        private BindableCollection<int> minutes;
+
+        public BindableCollection<int> Minutes
+        {
+            get { return minutes; }
+            set
+            {
+                if (minutes == value)
+                    return;
+                minutes = value;
+                NotifyOfPropertyChange(() => Minutes);
+            }
+        }
+
+        private int selectedHour;
+
+        public int SelectedHour
+        {
+            get { return selectedHour; }
+            set
+            {
+                if (selectedHour == value)
+                    return;
+                selectedHour = value;
+                NotifyOfPropertyChange(() => SelectedHour);
+            }
+        }
+
+        private int selectedMinute;
+
+        public int SelectedMinute
+        {
+            get { return selectedMinute; }
+            set
+            {
+                if (selectedMinute == value)
+                    return;
+                selectedMinute = value;
+                NotifyOfPropertyChange(() => SelectedMinute);
+            }
+        }
+
         public DateTime DateTime
         {
             get
             {
-                return new DateTime(SelectedYear, SelectedMonth.Key, SelectedDay);
+                return new DateTime(SelectedYear, SelectedMonth.Key, SelectedDay, SelectedHour, SelectedMinute, 0);
             }
         }
 
@@ -107,7 +164,14 @@ namespace octocal.UI.Calendar.ViewModels
             Days = new BindableCollection<int>();
             Months = new Dictionary<int, string>();
             Years = new BindableCollection<int>();
+            Hours = new BindableCollection<int>();
+            Minutes = new BindableCollection<int>();
 
+
+            for (var i = 0; i < 24; i++)
+                Hours.Add(i + 1);
+            for (var i = 0; i < 60; i++)
+                Minutes.Add(i);
             for (var i = DateTime.Now.Year - 20; i < DateTime.Now.Year + 20; i++)
                 Years.Add(i);
 
@@ -118,6 +182,9 @@ namespace octocal.UI.Calendar.ViewModels
             SelectedDay = DateTime.Now.Day;
 
             SelectedMonth = Months.Single(c => c.Key == DateTime.Now.Month);
+
+            SelectedHour = DateTime.Now.Hour;
+            SelectedMinute = DateTime.Now.Minute;
         }
 
         public DateTimeViewModel(DateTime date)
@@ -126,6 +193,8 @@ namespace octocal.UI.Calendar.ViewModels
             this.SelectedDay = date.Day;
             this.SelectedMonth = Months.Single(c => c.Key == date.Month);
             this.SelectedYear = date.Year;
+            this.SelectedHour = date.Hour;
+            this.SelectedMinute = date.Minute;
         }
 
         private void OnMonthsChanged()
