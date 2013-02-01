@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Caliburn.Micro;
-using Xceed.Wpf.DataGrid.Converters;
 using octocal.Domain;
 using octocal.UI.Services;
 using octocal.UI.Shell.ViewModels;
@@ -120,6 +116,34 @@ namespace octocal.UI.Calendar.ViewModels
             }
         }
 
+        private DateTimeViewModel startTimeViewModel;
+
+        public DateTimeViewModel StartTimeViewModel
+        {
+            get { return startTimeViewModel; }
+            set
+            {
+                if (startTimeViewModel == value)
+                    return;
+                startTimeViewModel = value;
+                NotifyOfPropertyChange(() => StartTimeViewModel);
+            }
+        }
+
+        private DateTimeViewModel endTimeViewModel;
+
+        public DateTimeViewModel EndTimeViewModel
+        {
+            get { return endTimeViewModel; }
+            set
+            {
+                if (endTimeViewModel == value)
+                    return;
+                endTimeViewModel = value;
+                NotifyOfPropertyChange(() => EndTimeViewModel);
+            }
+        }
+
         public bool CanDelete
         {
             get { return technicalId != Guid.Empty; }
@@ -131,7 +155,8 @@ namespace octocal.UI.Calendar.ViewModels
 
         private IAppointmentService appointmentService;
 
-        public EventEditorViewModel(IMessageBoxService service, IAppointmentService appointmentService)
+        public EventEditorViewModel(IMessageBoxService service,
+            IAppointmentService appointmentService)
         {
             messageBox = service;
             this.appointmentService = appointmentService;
@@ -139,6 +164,10 @@ namespace octocal.UI.Calendar.ViewModels
             this.EndTime = StartTime.AddHours(1);
             this.Title = string.Empty;
             this.technicalId = Guid.Empty;
+
+            StartTimeViewModel = new DateTimeViewModel();
+            EndTimeViewModel = new DateTimeViewModel();
+
             LoadDaySchedule();
             NotifyOfPropertyChange(() => CanDelete);
         }
@@ -147,7 +176,8 @@ namespace octocal.UI.Calendar.ViewModels
         {
             this.Description = appointment.Description;
             this.EndTime = appointment.EndDate;
-            this.StartTime = appointment.StartDate;
+            //this.StartTime = appointment.StartDate;
+            this.StartTimeViewModel = new DateTimeViewModel(appointment.StartDate);
             this.Title = appointment.Title;
             this.technicalId = appointment.TechnicalId;
             this.Location = appointment.Location;
@@ -194,7 +224,7 @@ namespace octocal.UI.Calendar.ViewModels
                                                    {
                                                        Description = Description,
                                                        EndDate = EndTime,
-                                                       StartDate = StartTime,
+                                                       StartDate = StartTimeViewModel.DateTime,
                                                        Title = Title,
                                                        TechnicalId = technicalId,
                                                        Location = location
