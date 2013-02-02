@@ -8,15 +8,17 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <xctk:BusyIndicator IsBusy="{Binding IsBusy}">
         <DockPanel LastChildFill="True" Margin="5 0 5 0">
-            <ToolBar DockPanel.Dock="Top" Background="Transparent">
-                <Button Content="Add event" cal:Message.Attach="AddEvent" />
-                <Button Content="Reload" cal:Message.Attach="Reload" />
-            </ToolBar>
-            <StackPanel DockPanel.Dock="top" Orientation="Horizontal">
-                <Button Content="&lt;&lt;" Width="30" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="PreviousWeek" />
-                <Button Content="Current week" Width="100" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="CurrentWeek" />
-                <Button Content=">>" Width="30" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="NextWeek" />
-            </StackPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Content="&lt;&lt;" Width="30" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="PreviousWeek" />
+                    <Button Content="Current week" Width="100" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="CurrentWeek" />
+                    <Button Content=">>" Width="30" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" cal:Message.Attach="NextWeek" />
+                </StackPanel>
+                <StackPanel Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Add event" cal:Message.Attach="AddEvent" />
+                    <Button Content="Reload" cal:Message.Attach="Reload" />
+                </StackPanel>
+            </DockPanel>
             <ScrollViewer DockPanel.Dock="Bottom">
                 <ItemsControl ItemsSource="{Binding Days,Mode=TwoWay}"
                             ScrollViewer.VerticalScrollBarVisibility="Auto">
