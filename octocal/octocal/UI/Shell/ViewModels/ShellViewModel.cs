@@ -31,5 +31,10 @@ namespace octocal.UI.Shell.ViewModels
             base.TryClose(dialogResult);
             this.CloseStrategy = new DefaultCloseStrategy<ShellContentBase>(true);
         }
+
+        public void Quit()
+        {
+            this.TryClose(true);
+        }
     }
 }
